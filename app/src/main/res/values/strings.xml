@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">retrofit-smartherd</string>
     <string name="globofly">GloboFly</string>
+    <string name="floatbutton">floatButton</string>
 </resources>
