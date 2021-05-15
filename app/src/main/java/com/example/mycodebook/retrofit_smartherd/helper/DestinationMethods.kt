@@ -5,6 +5,7 @@ import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
+import retrofit2.http.QueryMap
 
 interface DestinationMethods {
 
@@ -20,5 +21,14 @@ interface DestinationMethods {
     // if we didn't pass null while calling this method then this will work similar to method 1
     @GET("destination")
     fun getDestinationByCond(@Query("country") country : String? ) : Call<List<Destination>>
+
+    //method 4: use QueryMap when you have more condition then pass the HashMap in function
+    @GET("destination")
+    fun getDestinationByQueryMap(@QueryMap filter : HashMap<String, String>) : Call<List<Destination>>
+
+
+    //method 5 and method : 4 will give the same output
+    @GET("destination")
+    fun getDes(@Query("country") country: String? , @Query("count") count : String?)
 
 }
