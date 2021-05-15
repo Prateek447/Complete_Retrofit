@@ -42,4 +42,8 @@ interface DestinationMethods {
                           @Field("description") description : String?
                           ) : Call<Destination>
 
+    //method 8 : to delete destination with given id
+    @DELETE("destination/{id}")
+    fun deleteDestination(@Path("id") id: Int) : Call<Unit>
+
 }

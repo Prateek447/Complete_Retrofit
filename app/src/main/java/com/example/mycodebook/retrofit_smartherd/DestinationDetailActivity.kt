@@ -38,9 +38,21 @@ class DestinationDetailActivity : AppCompatActivity() {
 
     private fun initDeleteButton(id: Int) {
         destinationDetailBinding.btnDelete.setOnClickListener {
-            // To be replaced by retrofit code
-            SampleData.deleteDestination(id)
-            finish() // Move back to DestinationListActivity
+
+            //retrofit code...
+            val service =  ServiceBuilder.buildService(DestinationMethods::class.java)
+            val reqCall  =  service.deleteDestination(id)
+            reqCall.enqueue( object : retrofit2.Callback<Unit>{
+                override fun onResponse(call: Call<Unit>, response: Response<Unit>) {
+                    TODO("Not yet implemented")
+                    finish() // Move back to DestinationListActivity
+                }
+
+                override fun onFailure(call: Call<Unit>, t: Throwable) {
+                    TODO("Not yet implemented")
+                }
+
+            })
         }
     }
 
