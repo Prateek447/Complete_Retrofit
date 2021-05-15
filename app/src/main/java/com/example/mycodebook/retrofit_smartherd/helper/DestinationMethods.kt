@@ -2,10 +2,7 @@ package com.example.mycodebook.retrofit_smartherd.helper
 
 import com.example.mycodebook.retrofit_smartherd.models.Destination
 import retrofit2.Call
-import retrofit2.http.GET
-import retrofit2.http.Path
-import retrofit2.http.Query
-import retrofit2.http.QueryMap
+import retrofit2.http.*
 
 interface DestinationMethods {
 
@@ -30,5 +27,9 @@ interface DestinationMethods {
     //method 5 and method : 4 will give the same output
     @GET("destination")
     fun getDes(@Query("country") country: String? , @Query("count") count : String?)
+
+    //method: 6 to post the data to the server....
+    @POST("destination")
+    fun addDestination(@Body destination: Destination) : Call<Destination>
 
 }
