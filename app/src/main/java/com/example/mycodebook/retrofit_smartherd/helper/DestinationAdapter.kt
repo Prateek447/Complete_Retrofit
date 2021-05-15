@@ -14,7 +14,7 @@ import com.example.mycodebook.retrofit_smartherd.databinding.ListItemBinding
 import com.example.mycodebook.retrofit_smartherd.models.Destination
 import java.util.ArrayList
 
-class DestinationAdapter(private val context : Context , private val destination: ArrayList<Destination>) :
+class DestinationAdapter(private val context : Context , private val destination: List<Destination>) :
     RecyclerView.Adapter<DestinationAdapter.ViewHolder>() {
 
 

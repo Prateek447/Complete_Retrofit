@@ -7,7 +7,7 @@ import retrofit2.http.GET
 interface DestinationMethods {
 
 
-    @GET("Destination")
+    @GET("destination")
     fun  getDestination() : Call<List<Destination>>
 
 }
