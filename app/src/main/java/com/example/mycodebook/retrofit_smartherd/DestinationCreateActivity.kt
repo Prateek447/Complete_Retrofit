@@ -34,6 +34,7 @@ class DestinationCreateActivity : AppCompatActivity() {
                 override fun onResponse(call: Call<Destination>, response: Response<Destination>) {
                     if(response.isSuccessful){
                         //can do the task with the response
+
                         Toast.makeText(baseContext,"Successfuly added",Toast.LENGTH_SHORT).show()
                         finish()
 
