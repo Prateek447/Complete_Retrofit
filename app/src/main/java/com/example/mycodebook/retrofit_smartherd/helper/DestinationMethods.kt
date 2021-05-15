@@ -48,9 +48,9 @@ interface DestinationMethods {
 
     //we can sender headers with our functions to verify our identity
     //demo function to send headers with get function
-    @Headers("x-device-type : Android", "x-foo : bar") // use to provide headers not on runtime
-    @GET("description/{id}")
-    fun  demo(@Path("id") id: Int , @Header("Accept-language") language : String//use to provide header at runtime
-              ) : Call<List<Destination>>
+//    @Headers("x-device-type : Android", "x-foo : bar") // use to provide headers not on runtime
+//    @GET("description/{id}")
+//    fun  demo(@Path("id") id: Int , @Header("Accept-language") language : String//use to provide header at runtime
+//              ) : Call<List<Destination>>
 
 }
