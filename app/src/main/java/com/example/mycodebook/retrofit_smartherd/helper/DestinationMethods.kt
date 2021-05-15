@@ -32,4 +32,14 @@ interface DestinationMethods {
     @POST("destination")
     fun addDestination(@Body destination: Destination) : Call<Destination>
 
+    //method : 7 put method to update the existing Destination using FormUrlEncode(values put in the url)
+
+    @FormUrlEncoded
+    @PUT("destination/{id}")
+    fun updateDestination(@Path("id") id: Int,
+                          @Field("city") city : String?,
+                          @Field("country") country: String?,
+                          @Field("description") description : String?
+                          ) : Call<Destination>
+
 }

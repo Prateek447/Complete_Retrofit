@@ -50,30 +50,33 @@ class DestinationDetailActivity : AppCompatActivity() {
             val description = destinationDetailBinding.etDescription.text.toString()
             val country = destinationDetailBinding.etCountry.text.toString()
 
-            // To be replaced by retrofit code
-            val destination = Destination()
-            destination.id = id
-            destination.city = city
-            destination.description = description
-            destination.country = country
+            //retrofit code
+            val services =  ServiceBuilder.buildService(DestinationMethods::class.java)
+            val reqCall =  services.updateDestination(id,city, country, description)
+            reqCall.enqueue(object : retrofit2.Callback<Destination>{
+                override fun onResponse(call: Call<Destination>, response: Response<Destination>) {
+                    if(response.isSuccessful){
+                      //  val updatedDestination =  response.body() use it or ignore it
+                        finish() // Move back to DestinationListActivity
+                        Toast.makeText(baseContext,"Updated Success", Toast.LENGTH_SHORT).show()
+                    }
+                    else{
+                        Toast.makeText(baseContext,"Updated Fail", Toast.LENGTH_SHORT).show()
+                    }
+                }
 
-            SampleData.updateDestination(destination)
-            finish() // Move back to DestinationListActivity
+                override fun onFailure(call: Call<Destination>, t: Throwable) {
+                    Toast.makeText(baseContext,"Exception occure while updating", Toast.LENGTH_SHORT).show()
+
+                }
+
+            })
+
         }
     }
 
     private fun loadDetails(id: Int) {
         // To be replaced by retrofit code
-//        val destination = SampleData.getDestinationById(id)
-//
-//        destination?.let {
-//            destinationDetailBinding.etCity.setText(it.city)
-//            destinationDetailBinding.etDescription.setText(it.description)
-//            destinationDetailBinding.etCountry.setText(it.country)
-//            destinationDetailBinding.collapsingToolbar.title =  destination.city
-//        }
-
-
         val destinationInstance =  ServiceBuilder.buildService(DestinationMethods::class.java)
          val  getDestinById =  destinationInstance.getDestinationById(id)
         getDestinById.enqueue(object : retrofit2.Callback<Destination> {
