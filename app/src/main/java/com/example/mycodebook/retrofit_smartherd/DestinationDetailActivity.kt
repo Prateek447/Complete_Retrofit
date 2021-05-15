@@ -5,8 +5,13 @@ import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.mycodebook.retrofit_smartherd.databinding.ActivityDestinationDetailBinding
+import com.example.mycodebook.retrofit_smartherd.helper.DestinationMethods
 import com.example.mycodebook.retrofit_smartherd.helper.SampleData
+import com.example.mycodebook.retrofit_smartherd.helper.ServiceBuilder
 import com.example.mycodebook.retrofit_smartherd.models.Destination
+import okhttp3.Callback
+import retrofit2.Call
+import retrofit2.Response
 
 
 class DestinationDetailActivity : AppCompatActivity() {
@@ -59,14 +64,39 @@ class DestinationDetailActivity : AppCompatActivity() {
 
     private fun loadDetails(id: Int) {
         // To be replaced by retrofit code
-        val destination = SampleData.getDestinationById(id)
+//        val destination = SampleData.getDestinationById(id)
+//
+//        destination?.let {
+//            destinationDetailBinding.etCity.setText(it.city)
+//            destinationDetailBinding.etDescription.setText(it.description)
+//            destinationDetailBinding.etCountry.setText(it.country)
+//            destinationDetailBinding.collapsingToolbar.title =  destination.city
+//        }
 
-        destination?.let {
-            destinationDetailBinding.etCity.setText(it.city)
-            destinationDetailBinding.etDescription.setText(it.description)
-            destinationDetailBinding.etCountry.setText(it.country)
-            destinationDetailBinding.collapsingToolbar.title =  destination.city
-        }
+
+        val destinationInstance =  ServiceBuilder.buildService(DestinationMethods::class.java)
+         val  getDestinById =  destinationInstance.getDestinationById(id)
+        getDestinById.enqueue(object : retrofit2.Callback<Destination> {
+
+            override fun onResponse(call: Call<Destination>, response: Response<Destination>) {
+
+                if (response.isSuccessful){
+                  val destination = response.body()
+                    destination?.let {
+                    destinationDetailBinding.etCity.setText(it.city)
+                   destinationDetailBinding.etDescription.setText(it.description)
+                    destinationDetailBinding.etCountry.setText(it.country)
+                   destinationDetailBinding.collapsingToolbar.title =  destination.city
+                  }
+                }
+
+            }
+
+            override fun onFailure(call: Call<Destination>, t: Throwable) {
+
+            }
+
+        })
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
