@@ -53,4 +53,7 @@ interface DestinationMethods {
 //    fun  demo(@Path("id") id: Int , @Header("Accept-language") language : String//use to provide header at runtime
 //              ) : Call<List<Destination>>
 
+    //method : 9 send dynamic header(runtime)
+    @GET("destination")
+    fun dynHead(@HeaderMap header : Map<String,String>)
 }

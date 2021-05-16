@@ -6,10 +6,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.mycodebook.retrofit_smartherd.databinding.ActivityDestinationDetailBinding
 import com.example.mycodebook.retrofit_smartherd.helper.DestinationMethods
-import com.example.mycodebook.retrofit_smartherd.helper.SampleData
 import com.example.mycodebook.retrofit_smartherd.helper.ServiceBuilder
 import com.example.mycodebook.retrofit_smartherd.models.Destination
-import okhttp3.Callback
 import retrofit2.Call
 import retrofit2.Response
 
@@ -89,6 +87,22 @@ class DestinationDetailActivity : AppCompatActivity() {
 
     private fun loadDetails(id: Int) {
         // To be replaced by retrofit code
+
+
+        //add this map to the method for send dynamic headers with the request
+//        val map: MutableMap<String, String> = HashMap()
+//        map["Page"] = java.lang.String.valueOf("")
+//
+//        if (BuildConfig.DEBUG) {
+//            map["Accept"] = "application/vnd.yourapi.v1.full+json"
+//            map["User-Agent"] = "Future Studio Debug"
+//        } else {
+//            map["Accept"] = "application/json"
+//            map["Accept-Charset"] = "utf-8"
+//            map["User-Agent"] = "Future Studio Release"
+//        }
+
+
         val destinationInstance =  ServiceBuilder.buildService(DestinationMethods::class.java)
          val  getDestinById =  destinationInstance.getDestinationById(id)
         getDestinById.enqueue(object : retrofit2.Callback<Destination> {
