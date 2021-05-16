@@ -55,5 +55,11 @@ interface DestinationMethods {
 
     //method : 9 send dynamic header(runtime)
     @GET("destination")
-    fun dynHead(@HeaderMap header : Map<String,String>)
+    fun dynHead(@HeaderMap header : Map<String,String>) : Call<List<Destination>>
+
+
+    //method 10 : send multiple query with single key and multiple conditions
+    //https://api.example.com/tasks?id=123&id=124&id=125
+    @GET("tasks")
+    fun temp(@Query("id") list: List<Long>)
 }
